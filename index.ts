@@ -1,6 +1,8 @@
+require("dotenv").config();
+
 // dependencies
-import Joi from 'joi';
-import express from 'express'
+import Joi from "joi";
+import express from "express";
 
 //  importing routes
 const todoRoute = require("./routes/todo");
@@ -10,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 // listen for request
-const port = process.env.PORT || 8080;
+const port = process.env.PORT;
 app.listen(port);
 
 // register view engine
@@ -25,7 +27,7 @@ app.use("/todo", todoRoute);
 
 // 404 status code
 app.use((req, res) => {
-    res.status(404).render("404");
+    res.status(404).send("404");
 });
 
 // function for validating the request body
